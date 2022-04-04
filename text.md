@@ -33,7 +33,7 @@ sudo apt update && sudo apt upgrade -y
 色々設定できるが、開始ディレクトリをwindowsのユーザーホーム（C:\Users\USERNAME）にすると便利。  
 
 ## Xserverの導入
-windows11ではwslgというGUIサーバが
+windows11ではwslgが使えるが、ここではVcXsrvを用いて環境構築を行う。
 
 ## 今までで発生したトラブル事例
 - 0x800720efd→更新プログラムが実行中
