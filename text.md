@@ -33,8 +33,8 @@ sudo apt update && sudo apt upgrade -y
 色々設定できるが、開始ディレクトリをwindowsのユーザーホーム（C:\Users\USERNAME）にすると便利。  
 
 ## Xserverの導入
-windows11ではwslgが使えるが、ここではVcXsrvを用いて環境構築を行う。　
-参考サイト：[Windowsでputtyを使わずにX11 Forwardingをする。](https://blog.neno.dev/entry/2021/04/27/231930)  
+windows11ではwslgが使えるが、ここではVcXsrvを用いて環境構築を行う。  
+参考サイト：[Windowsでputtyを使わずにX11 Forwardingをする。](https://blog.neno.dev/entry/2021/04/27/231930)  　
 [WSL2でGUIアプリケーションを使えるようにする](https://qiita.com/amenoyoya/items/ff00a265546fd966d7a7)  
 ## 今までで発生したトラブル事例
 - 0x800720efd→更新プログラムが実行中
