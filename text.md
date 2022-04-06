@@ -82,12 +82,11 @@ windows11ではwslgが使えるが、ここではVcXsrvを用いて環境構築�
     - ✅Native opengl
     - Disable access control
     - Additional parameters for VcXsrv: -ac  
-![Select display settingの画面](/figure/v1.png)
-![Select how to start clientsの画面](/figure/v2.png)
-![Extra settingの画面](/figure/v3.png)
+[Select display settingの画面](/figure/v1.png)
+[Select how to start clientsの画面](/figure/v2.png)
+[Extra settingの画面](/figure/v3.png)
 
-savecoonfigで設定が保存される。  
-
+ファイヤーウォールの設定→**パブリックネットワーク**
 ### WSL側の設定
 Xorg GUI環境をインストール
 ```bash
@@ -117,7 +116,8 @@ sudo nano /etc/ssh_config
 ```bash
 exit
 ```
-
+### VcXsrvのスタートアップへの登録
+編集中
 ## 今までで発生したトラブル事例
 - 0x800720efd→更新プログラムが実行中
 - 0x800701bc→カーネルをアップデートする（[ダウンロード先](https://docs.microsoft.com/ja-jp/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)）
