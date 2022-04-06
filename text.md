@@ -29,16 +29,92 @@ sudo apt update && sudo apt upgrade -y
 ```
 ＊このコマンドは、定期的に実行すること。
 これで`sudo apt install hogehoge`で好きなパッケージをインストールできるようになった。  
-## Windows Terminalの設定
-色々設定できるが、開始ディレクトリをwindowsのユーザーホーム（C:\Users\USERNAME）にすると便利。  
+### 日本語フォントの表示
+```bash
+# fc-cache コマンド等をインストール
+$ sudo apt install -y fontconfig
 
-## Xserverの導入
+# Windows側のフォントをシンボリックリンクすることで日本語フォントを使用できるようにする
+$ sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/windows
+
+# フォントキャッシュクリア
+$ sudo fc-cache -fv
+
+# 日本語言語パックのインストール
+$ sudo apt -y install language-pack-ja
+
+# ロケールを日本語に設定
+$ echo 'export LANGUAGE=ja_JP.UTF-8' >> ~/.bashrc
+$ echo 'export LC_ALL=ja_JP.UTF-8' >> ~/.bashrc
+$ exec $SHELL -l
+$ sudo update-locale LANG=ja_JP.UTF8
+
+# いったん終了して再起動すればアプリケーションで日本語が使えるようになる
+$ exit
+
+# --- WSL2シェル再起動 ---
+
+$ exec $SHELL -l
+
+# タイムゾーンをJSTに設定
+$ sudo dpkg-reconfigure tzdata
+## TUI で設定: Asia > Tokyo
+
+# 日本語 man (コマンドマニュアル) をインストール
+$ sudo apt install -y manpages-ja manpages-ja-dev
+```
+## Windows Terminalの設定
+色々設定できるが、開始ディレクトリをWSLのユーザーホーム（C:\Users\USERNAME）にすると便利。  
+
+## WSL2でGUIを使えるようにする
 windows11ではwslgが使えるが、ここではVcXsrvを用いて環境構築を行う。  
 参考サイト：
 - [Windowsでputtyを使わずにX11 Forwardingをする。](https://blog.neno.dev/entry/2021/04/27/231930)  　
-- [WSL2でGUIアプリケーションを使えるようにする](https://qiita.com/amenoyoya/items/ff00a265546fd966d7a7)  
-## TODO
-画面の転送の設定  
+- [WSL2でGUIアプリケーションを使えるようにする](https://qiita.com/amenoyoya/items/ff00a265546fd966d7a7) 
+
+### VcXsrvのインストール
+[ダウンロードリンク](https://sourceforge.net/projects/vcxsrv/)
+### VcXsrvの起動時のダイヤログ設定
+- Select display settings: Multiple Display
+- Select how to start clients: Start no client
+- Extra settings:
+    - ✅Clipboard (Primary Selection)
+    - ✅Native opengl
+    - Disable access control
+    - Additional parameters for VcXsrv: -ac  
+
+savecoonfigで設定が保存される。  
+
+### WSL側の設定
+Xorg GUI環境をインストール
+```bash
+sudo apt update && sudo apt install -y libgl1-mesa-dev xorg-dev
+```
+DISPLAY環境変数をWindows側のIPにする
+```bash
+sudo tee -a ~/.bashrc << \EOS
+# WSL2 VcXsrv setting
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
+EOS
+```
+ssh_configを編集する。
+```bash
+sudo nano /etc/ssh_config
+```
+行末に下記を追加
+```config
+# Host *　の部分に追加
+    GSSAPIAuthentication yes
+    ForwardAgent yes
+    ForwardX11 yes
+    XAuthLocation /usr/bin/xauth
+    ForwardX11Trusted yes
+```
+シェルを再起動
+```bash
+exit
+```
+
 ## 今までで発生したトラブル事例
 - 0x800720efd→更新プログラムが実行中
 - 0x800701bc→カーネルをアップデートする（[ダウンロード先](https://docs.microsoft.com/ja-jp/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)）
