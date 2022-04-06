@@ -82,6 +82,9 @@ windows11ではwslgが使えるが、ここではVcXsrvを用いて環境構築�
     - ✅Native opengl
     - Disable access control
     - Additional parameters for VcXsrv: -ac  
+![Select display settingの画面](/figure/v1.png)
+![Select how to start clientsの画面](/figure/v2.png)
+![Extra settingの画面](/figure/v3.png)
 
 savecoonfigで設定が保存される。  
 
