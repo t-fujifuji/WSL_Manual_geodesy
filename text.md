@@ -120,7 +120,7 @@ sudo nano /etc/ssh/ssh_config
 exit
 ```
 ### "Warning: No xauth data; using fake authentication data for X11 forwarding"を消す
-[X11Forwardingがうまくいかない場合の対処](https://qiita.com/yabeenico/items/61ff3e64ee95e8d9156d)
+[X11Forwardingがうまくいかない場合の対処](https://qiita.com/yabeenico/items/61ff3e64ee95e8d9156d)  
 認証情報を追加
 ```bash
 xauth generate $DISPLAY
