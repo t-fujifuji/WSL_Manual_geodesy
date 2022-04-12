@@ -82,8 +82,11 @@ windows11ではwslgが使えるが、ここではVcXsrvを用いて環境構築�
   - [x]Native opengl
   - [ ]Disable access control
   - Additional parameters for VcXsrv: -ac  
+
 ![Select display settingの画面](/figure/v1.png "Select display settingの画面")
+
 ![Select how to start clientsの画面](/figure/v2.png "Select how to start clientsの画面")
+
 ![Extra settingの画面](/figure/v3.png "Extra settingの画面")
 
 ファイヤーウォールの設定→**パブリックネットワーク**
@@ -101,7 +104,7 @@ EOS
 ```
 ssh_configを編集する。
 ```bash
-sudo nano /etc/ssh_config
+sudo nano /etc/ssh/ssh_config
 ```
 行末に下記を追加
 ```config
