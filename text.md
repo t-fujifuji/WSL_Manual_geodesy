@@ -124,3 +124,5 @@ exit
 ## 今までで発生したトラブル事例
 - 0x800720efd→更新プログラムが実行中
 - 0x800701bc→カーネルをアップデートする（[ダウンロード先](https://docs.microsoft.com/ja-jp/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)）
+- `Gtk-WARNING **: Locale not supported by C library. ` when starting apps from the commandline 未解決
+- Warning: No xauth data; using fake authentication data for X11 forwarding.　未解決
